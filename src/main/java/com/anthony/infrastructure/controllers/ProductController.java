@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin( origins = "http://localhost:9080" )
 public class ProductController {
 
     private ProductRepository productRepository;
@@ -61,7 +62,7 @@ public class ProductController {
     /**
      * Insertamos un nuevo producto
      *
-     * @param product
+     * @param productDTO
      * @return producto insertado
      */
     @PostMapping("/product")
