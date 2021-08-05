@@ -15,7 +15,7 @@ public class RestConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
 //                registry.addMapping( "/**" );  all endpoints
-                registry.addMapping( "/product" )
+                registry.addMapping( "/**" )
                         .allowedOrigins( "http://localhost:8080/" )
                         .allowedMethods( "GET", "POST" );
 
