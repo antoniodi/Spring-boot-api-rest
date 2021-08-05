@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin( origins = "http://localhost:9080" )
 public class ProductController {
 
     private ProductRepository productRepository;
@@ -31,10 +30,11 @@ public class ProductController {
     }
 
     /**
-     * Obtenemos todos los productos
+     * Get all products
      *
-     * @return
+     * @return all products
      */
+    @CrossOrigin( origins = "http://localhost:9080" )
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getAll() {
         final List<Product> products = productRepository.findAll();
@@ -47,16 +47,16 @@ public class ProductController {
     }
 
     /**
-     * Obtenemos un producto en base a su ID
+     * Get product by ID
      *
-     * @param id
-     * @return Null si no encuentra el producto
+     * @param productId id of the product
+     * @return return a product otherwise nul
      */
     @GetMapping("/product/{id}")
-    public Product getById(@PathVariable Long id) {
-        final Optional<Product> product = productRepository.findById(id);
+    public Product getById(@PathVariable Long productId) {
+        final Optional<Product> product = productRepository.findById(productId);
 
-        return product.orElseThrow(() -> new Product.ProductNotFoundException(id));
+        return product.orElseThrow(() -> new Product.ProductNotFoundException(productId));
     }
 
     /**
